@@ -10,7 +10,7 @@
     <p class="text-justify">
         <%=category_section_intro.html_safe%>
         <% if plot_maps_and_graphs %>
-        <div>
+        <div class="my-1">
             <% case category_section
             when 'driver_section' %>
             <%= render partial: "ozone_driver_map_graph_render" %>
