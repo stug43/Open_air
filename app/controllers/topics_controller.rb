@@ -23,7 +23,7 @@ class TopicsController < ApplicationController
       end
     end
 
-    @dataweek_article_boolean = (@topic.id == 1) #1 to be changed by whatever is the Topic ID for our Ozone article.
+    @dataweek_article_boolean = (@topic.id == 16) #1 to be changed by whatever is the Topic ID for our Ozone article.
 
   end
 end

@@ -1,4 +1,7 @@
 
+require ‘csv’
+
+
 <p><
 Issue des données de l'association Atmosud, un niveau moyen des niveaux de concentration en ozone est représenté ci-dessous ( avec une résolution de 1 km).
 </p>
@@ -15,7 +18,12 @@ Issue des données de l'association Atmosud, un niveau moyen des niveaux de conc
 	<p> Ci-dessous les concentrations moyennes mensuelles d'Ozone (O3) sur l'année 2018</p>
 	<canvas id="line-chart" width="750" height="550"></canvas>
 </div>
-
+<br>
+<div> 
+	<p> Ci-dessous les concentrations moyennes par heure d'Ozone (O3) </p>
+	<canvas id="myChart" width="750" height="550"></canvas>
+</div>
+<br>
 <section class="slice-lg sct-color-1 border-top">
 	<div class="container">
 <h3 class='text-center'>Les indices de la qualité de l'air L'indice en temps réel</h3>
@@ -54,3 +62,5 @@ Issue des données de l'association Atmosud, un niveau moyen des niveaux de conc
 	</div>
 </div>
 </section>
+
+
