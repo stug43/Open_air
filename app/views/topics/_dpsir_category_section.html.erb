@@ -9,6 +9,22 @@
 <div class="block-body block-post-body">
     <p class="text-justify">
         <%=category_section_intro.html_safe%>
+        <% if plot_maps_and_graphs %>
+        <div>
+            <% case category_section
+            when 'driver_section' %>
+            <%= render partial: "ozone_driver_map_graph_render" %>
+            <%  when 'pressure_section' %>
+            <%= render partial: "ozone_pressure_map_graph_render" %>
+            <%  when 'state_section' %>
+            <%= render partial: "ozone_state_map_graph_render" %>
+            <%  when 'impact_section' %>
+            <%= render partial: "ozone_impact_map_graph_render" %>
+            <%  when 'response_section' %>
+            <%= render partial: "ozone_response_map_graph_render" %>
+            <% end %>
+        </div>
+        <% end %>
     </p>
     <br>
     <% if category_datasets.size == 1 %>
