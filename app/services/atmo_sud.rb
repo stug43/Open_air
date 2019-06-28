@@ -2,7 +2,7 @@ class AtmoSud
 require 'nokogiri'
 
   def hash_city
-    city = {"Marseille" => "13055", "Toulon" => "83137","Aix en Provence" => "13001", "Avignon" => "84007", "Nice" => "06088", "La Ciotat" => "13028"}
+    city = {"Marseille" => "13055", "Toulon" => "83137","Aix en Provence" => "13001", "Avignon" => "84007", "Nice" => "06088", "Gap" => "05061"}
   end
 
 
