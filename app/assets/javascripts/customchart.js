@@ -8,29 +8,14 @@
                 const ctx = document.getElementById('myChart').getContext('2d');
 
                 const myChart = new Chart(ctx, {
-                        type: 'line',
+                        type: 'bar',
                         data: {
-                            labels: data.xs,
+                            labels: ['00h', '01', '02', '03', '04h', '05h', '06h', '07h', '08h', '09h', '10h', '11h', '12h'],
                             datasets: [{
-                                label: 'Mesures mensuelles de O3 (ozone)',
-                                data: data.ys,
+                                label: 'Mesures horaires de concentration en ozone',
+                                data: [44.7, 41.5, 43.7, 57.7, 48.5, 31.4, 20.1, 55.8, 65.2, 74.8, 90.3, 107, 139.3 ],
                                 fill:false,
-                                backgroundColor: [
-                                    'rgba(255, 99, 132, 0.2)',
-                                    'rgba(54, 162, 235, 0.2)',
-                                    'rgba(255, 206, 86, 0.2)',
-                                    'rgba(75, 192, 192, 0.2)',
-                                    'rgba(153, 102, 255, 0.2)',
-                                    'rgba(255, 159, 64, 0.2)'
-                                ],
-                                borderColor: [
-                                    'rgba(255, 99, 132, 1)',
-                                    'rgba(54, 162, 235, 1)',
-                                    'rgba(255, 206, 86, 1)',
-                                    'rgba(75, 192, 192, 1)',
-                                    'rgba(153, 102, 255, 1)',
-                                    'rgba(255, 159, 64, 1)'
-                                ],
+                                
                                 borderWidth: 1
                             }]
                         },
@@ -38,6 +23,7 @@
                             scales: {
                                 yAxes: [{
                                     ticks: {
+                                        beginAtZero: true, 
                                         // Include a dollar sign in the ticks
                                         callback: function(value, index, values) {
                                             return value + 'µg.m³';
