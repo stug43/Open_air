@@ -6,6 +6,10 @@ class TopicsController < ApplicationController
   end
 
   def show
+    @atmos = AtmoSud.new
+    @atmo_city = AtmoSud.new.city_air_indice
+    @chart = (@atmos.to_i / 10)*10 + 5
+
     @topic = Topic.with_attached_main_picture.find(params[:id])
     @related_topics = (Topic.all - [@topic]).sample(3)
     @related_topics_size = @related_topics.size
