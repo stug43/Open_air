@@ -148,8 +148,32 @@ models_array.each do |model|
                                     response_section_intro: "Depuis le 1er janvier 2016, la Métropole Aix-Marseille-Provence (créée par la loi MAPTAM du 27 janvier 2014) est l’autorité organisatrice de la mobilité (AOM) sur son territoire, et donc de la RTM (Régie des Transports Métropolitains). Elle dispose d’un budget annexe Transports. Les relations juridiques, administratives et financières RTM/AOM sont déterminées dans un Contrat d’Obligation de Service Public.") 
             my_topic.main_picture.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'electric_bus.jpg')), filename: 'electric_bus.jpg')
 
+	          		when 4
+    		    	    my_topic = model.new(title: "Le rôle de l'ozone dans la pollution atmosphérique", 
+    		    	    	short_description: "La Région Sud a connu ce jeudi 27 juin une canicule et un pic de pollution à l’ozone ayant conduit à des mesures de régulation inédites. L’ozone, ses causes et conséquences, la circulation alternée, qu’y comprenez-vous ? Cet article y répond en s’appuyant sur la base des données publiques régionales.", 
+    		    	    	driver_section_title: "Qu'est-ce que l'ozone ?", 
+    		    	    	driver_section_intro: "L’ozone est une molécule formée de 3 atomes d’oxygène. Sa présence dans l’atmosphère est naturelle. L’ozone se crée dans la stratosphère par une réaction entre le dioxygène présent dans l’air et les rayons UV de très courte longueur d’onde. À cette altitude la couche d’ozone nous est bénéfique par la filtration des rayonnements solaire les plus nocifs nous évitant les cancers de la peau.
+
+À notre altitude, la présence d’ozone est un réel danger pour le vivant attaquant les poumons, les reins, les yeux, le système nerveux ainsi que les espèces végétales. De très faible concentration suffisent à provoquer des toux ainsi que des troubles du système nerveux et de la vision.
+Dans l’atmosphère, cas pour lequel l’ozone est un polluant, il est nécessaire de distinguer les sources humaines des sources naturelles sur lesquelles il nous est difficile d’agir. On compte parmi ces dernières les feux de forêts, les fortes températures empêchant la dispersion de l’ozone vers les couches supérieures et également les arcs électriques dus aux orages.
+L’activité humaine est responsable de formation d’ozone par la libération de particules chimiques telles que l’oxyde d’azote (NO), le dioxyde d’azote (NO2) ou les composé organiques volatiles (COV). Ces précurseurs peuvent alors former de l’ozone lorsqu'un atome d'oxygène réagit avec une molécule de dioxygène. Ainsi, des rayonnements ultraviolets, ou de fortes températures vont engendrer des réactions chimiques productrices d’ozone. L’ozone se forme donc beaucoup en été.
+Instable, l'ozone possède une durée de vie de seulement quelques jours dans les basses couches de l'atmosphère. Il existe néanmoins des méthodes visant à le détruire : la chaleur en est une car sa durée de vie diminue, jusqu'à atteindre seulement quelques millisecondes à une température de 350 c°. Certains composés chimiques accélèrent sa dégradation; on parle alors de catalyseurs. Le charbon actif permet également de dégrader la molécule, en revanche cette méthode présente un risque de combustion.
+Ci-dessous figurent les concentrations horaires issues du réseau fixe des mesures européennes en ozone (O3) dans l'air sur la région Corse. Toutes les données fournies sont en µg/m3 (microgramme par mètre cube) et l'historique disponible remonte à janvier 2017.", 
+    		    	    	pressure_section_title: "L'émission de précurseurs", 
+    		    	    	pressure_section_intro: "Les émissions décrites précédemment sont indissociables de leurs finalité. La pollution liée au trafic routier représente la grande majorité de la production de précurseurs d'ozone par l'Homme.", 
+    		    	    	state_section_title: "Les Concentrations d'Ozone dans la Région Sud", 
+    		    	    	state_section_intro: "La quantité d'ozone dans l'air augmente chaque année. L'augmentation de la production de précurseurs (oxydes d'azotes et composés organiques volatiles) par les pays de l'hémisphère nord tend à perpétrer cette évolution. Concernant les concentrations, elles sont positivement fortement corrélées au niveau d'ensoleillement ainsi qu'à l'activité et à la densité de la région.<br>Ci-dessous sont présentées les concentrations moyennes mensuelles et annuelles issues du réseau fixe de l'ozone (O3) dans l'air sur la Région Sud en microgramme par mètre cube.", 
+    		    	    	impact_section_title: "Quel impact sur votre santé ?", 
+    		    	    	impact_section_intro: "L'ozone provoque de sévères lésions des voies respiratoires et des muqueuses, notamment oculaires. A plus fortes concentrations, la même molécule peut provoquer des crises d'asthme, mais également atteindre le système nerveux. Les végétaux sont également fortement touchés. Des nécroses peuvent alors survenir et la croissance de la plante s'en trouve diminuée.", 
+    		    	    	response_section_title: "Lois et réglementations", 
+    		    	    	response_section_intro: "Actuellement, l'Organisation Mondiale de la Santé, l'Union Européenne ainsi que la France ont fixé des seuils critiques et convenu d'objectifs à atteindre à long terme concernant la qualité de l'air. Ces objectifs ont pour but de préserver l'environnement et les populations pouvant être exposées à de trop fortes concentrations.
+
+Règlement de l'Union Européenne sur l'Ozone
+https://ec.europa.eu/clima/policies/ozone/regulation_fr")
+							my_topic.main_picture.attach(io: File.open(Rails.root.join('app', 'assets', 'images', '.jpg')), filename: 'ozone_peak.jpg')
+
 =begin
-          when 4
+          when 5
             my_topic = model.new(title: "", short_description: "", driver_section_title: "", driver_section_intro: "", pressure_section_title: "", pressure_section_intro: "", state_section_title: "", state_section_intro: "", impact_section_title: "", impact_section_intro: "", response_section_title: "", response_section_intro: "")
 						my_topic.main_picture.attach(io: File.open(Rails.root.join('app', 'assets', 'images', '.jpg')), filename: '.jpg')
 =end
