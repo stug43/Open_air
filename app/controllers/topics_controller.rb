@@ -2,7 +2,7 @@
 
 class TopicsController < ApplicationController
   def index
-    @topics = Topic.with_attached_main_picture.all
+    @topics = Topic.with_attached_main_picture.all.sort_by {|k| k.id }
   end
 
   def show
@@ -23,7 +23,7 @@ class TopicsController < ApplicationController
       end
     end
 
-    @dataweek_article_boolean = (@topic.id == 16) #1 to be changed by whatever is the Topic ID for our Ozone article.
+    @dataweek_article_boolean = (@topic.id == 2) #1 to be changed by whatever is the Topic ID for our Ozone article.
 
   end
 end
