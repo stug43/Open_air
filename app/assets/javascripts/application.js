@@ -13,7 +13,8 @@
 //= require rails-ujs
 //= require jquery
 //= require activestorage
-//= require_tree .
+
+
 
 //= require jquery/jquery.min
 //= require popper/popper.min
@@ -56,11 +57,6 @@
 //= require deso-slide/js/jquery.desoslide.min
 
 //= require boomerang.min
-
-//= require_self
-
-jQuery( function($) { $('a').tooltip(); } );
-
-$(document).ready( function() {
-    $('.alert').delay(5000).fadeOut();
-  });
+//= require leaflet
+//= require Chart.min
+//= require_tree .

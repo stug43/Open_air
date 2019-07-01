@@ -10,16 +10,14 @@
     <title>Open Air</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800|Roboto:400,500,700" rel="stylesheet">
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
+    <%= stylesheet_link_tag    'application' %>
     <!-- Favicon -->
     <%= render 'application/favicon' %>
-
-
   </head>
   <body data-spy="scroll" data-target="#scroll_data_target" data-offset="50">
     <!-- MAIN WRAPPER -->
@@ -29,7 +27,7 @@
           <div class="st-content">
             <div class="st-content-inner">
               <%= render "layouts/navbar" %>
-              <!-- Header -->  
+              <!-- Header -->
               <%= render "topics/topic-index-banner" %>
               <section class="bg-base-5 slice sct-color-1">
                 <div class="bg-base-5 container">
@@ -43,6 +41,7 @@
       </div><!-- END: st-container -->
     </div><!-- END: body-wrap -->
     <a href="#" class="back-to-top btn-back-to-top"></a>
-  </body>
-  <%= render "layouts/footer" %>
+    <%= render "layouts/footer" %>
+    <%= javascript_include_tag 'application' %>
+  </body>        
 </html>
