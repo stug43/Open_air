@@ -10,7 +10,7 @@
 # frozen_string_literal: true
 
 Rails.application.eager_load!
-models_array = [User, Topic, Dataset, DatasetCollection]
+models_array = [User, Topic, Dataset, TopicsAndDatasetsLink, DatasetCollection]
 # Sets the locale to "France":
 Faker::Config.locale = 'fr'
 
@@ -38,7 +38,7 @@ puts "Database generation for #{models_array.join(' ')}"
 puts '~' * 50
 puts
 
-models_items_count = Hash[[['User', 5], ['Topic', 9], ['Dataset', 15], ['DatasetCollection', 12]]]
+models_items_count = Hash[[['User', 5], ['Topic', 9], ['Dataset', 15], ['DatasetCollection', 12], ['TopicsAndDatasetsLink', 10]]]
 topics_pics_paths_array = Rails.env.production? ? Dir.glob(Rails.root.join('public', 'assets', 'air-quality', '*.jpg')) :
  Dir.glob(Rails.root.join('app', 'assets', 'images', 'air-quality', '*.jpg'))
 
@@ -167,20 +167,14 @@ models_array.each do |model|
         my_topic.save
         topic_count += 1
       end
-    when 'DatasetCollection'
-      loop do
-        dataset_collection = model.new(user: User.all.sample, dataset: Dataset.all.sample)
-        break if dataset_collection.save
-      end
 
     when 'Dataset'
       if Dataset.all.size > 7 # once we have created datasets linked to Topic.first - Maritime pollution
-        FactoryBot.create(:dataset, topic: Topic.all[1..-1].sample) if Dataset.all.size < models_items_count[model.name]
+        FactoryBot.create(:dataset) if Dataset.all.size < models_items_count[model.name]
 
       else
         # Maritime_port_dataset
         model.create(
-          topic: Topic.first,
           title: 'Synthèse des drivers économiques',
           db_link: 'https://trouver.datasud.fr/dataset/indicateur-de-contexte-du-tableau-de-bord-regional-du-developpement-durable/resource/42bceea5-a110-47e2-baed-b0b4499f9bf2/view/fb69d6f0-2cae-46aa-9db7-dbf887bf7d29',
           dpsir_category: 'Driver',
@@ -199,7 +193,6 @@ Tableau 8 : Part des superficies en sites « Natura 2000 »',
 
         # do not render
         model.create(
-          topic: Topic.first,
           title: 'Activité maritime',
           db_link: 'https://trouver.datasud.fr/dataset/les-lignes-maritimes-regulieres-touchant-le-port-de-marseille-fos',
           dpsir_category: 'Driver',
@@ -209,7 +202,6 @@ Tableau 8 : Part des superficies en sites « Natura 2000 »',
         )
 
         model.create(
-          topic: Topic.first,
           title: "Emissions de polluants des EPCI (Intercommunalités) tous secteurs d'activité confondus dans la région Sud",
           db_link: 'https://trouver.datasud.fr/dataset/emissions-de-polluants-atmospheriques-tous-secteurs-dactivite-confondus-des-epci-de-la-region-sud/resource/54515d61-8274-40a4-93d2-6b4e64387307/view/9f6b117c-badf-4d0e-a11a-206122277194',
           dpsir_category: 'Pressure',
@@ -220,7 +212,6 @@ Tableau 8 : Part des superficies en sites « Natura 2000 »',
 
         # kind: qml, do not render...
         model.create(
-          topic: Topic.first,
           title: "Évolution de l'occupation du sol en Provence-Alpes-Côte d'Azur entre 2006 et 2014 ",
           db_link: 'https://trouver.datasud.fr/dataset/evolution-de-loccupation-du-sol-en-provence-alpes-cote-dazur-entre-2006-et-2014/resource/78256182-39b7-4938-a6ae-e08a6fa54788',
           dpsir_category: 'State',
@@ -231,7 +222,6 @@ Tableau 8 : Part des superficies en sites « Natura 2000 »',
 
         # map, do not render#map, do not render
         model.create(
-          topic: Topic.first,
           title: 'Modélisations annuelles des polluants principaux sur la région Sud ',
           db_link: 'https://trouver.datasud.fr/dataset/niveaux-annuels-de-polluants-dans-l-air-ambiant-issus-de-la-modelisation-sur-la-region-sud',
           dpsir_category: 'State',
@@ -254,7 +244,6 @@ La résolution est de 25 m pour toute les couches, sauf celles pour l'ozone qui 
 
         # map, do not render
         model.create(
-          topic: Topic.first,
           title: 'Mesures horaires de polluants',
           db_link: 'https://trouver.datasud.fr/dataset/concentrations-horaires-de-polluants-dans-lair-ambiant-issues-du-reseau-permanent-de-mesures-automa/resource/99680cee-3efe-439f-bb60-f99e25537779',
           dpsir_category: 'State',
@@ -265,7 +254,6 @@ La résolution est de 25 m pour toute les couches, sauf celles pour l'ozone qui 
 
         # map, do not render
         model.create(
-          topic: Topic.first,
           title: 'Exposition aux PM2,5',
           db_link: 'https://trouver.datasud.fr/dataset/populations-et-territoires-exposes-au-depassement-des-valeurs-limites-sur-la-region-sud/resource/77c2d91d-5bfb-4911-8db9-d169a4d33b14#bbox=3.8836669916473716,43.46089377519706,5.28991699145153,44.645208218791495',
           dpsir_category: 'Impact',
@@ -278,7 +266,6 @@ En complément, sont diffusés également les chiffres d'exposition pour d'autre
 
         # xls, pdf, do not render
         model.create(
-          topic: Topic.first,
           title: "Lutte contre le changement climatique et protection de l'atmosphère : Indicateurs de développement durable ",
           db_link: 'https://trouver.datasud.fr/dataset/lutte-contre-le-changement-climatique-et-protection-de-latmosphere-indicateurs-de-developpement-dur',
           dpsir_category: 'Response',
@@ -288,7 +275,25 @@ En complément, sont diffusés également les chiffres d'exposition pour d'autre
         )
 
       end
-    end
+
+    when 'DatasetCollection'
+      loop do
+        dataset_collection = model.new(user: User.all.sample, dataset: Dataset.all.sample)
+      	break if dataset_collection.save
+      end
+
+		when 'TopicsAndDatasetsLink'
+			if TopicsAndDatasetsLink.all.size < 7
+				topics_and_datasets_link = model.new(topic: Topic.first, dataset: Dataset.find(model.count + 1))
+				topics_and_datasets_link.save
+			else
+				loop do
+					topics_and_datasets_link = model.new(topic: Topic.all.sample, dataset: Dataset.all.sample)
+					break if topics_and_datasets_link.save
+				end
+			end
+		end
+
   end
 end
 
