@@ -1,0 +1,13 @@
+<div class="container">
+<ul>
+
+       <% @users.each_with_index do |user, index| %>
+       <li class="list-group-item d-flex justify-content-between align-items-center">
+          Nom: <%= user.last_name %> <br> 
+          Prénom: <%= user.first_name %> 
+          <%= link_to 'Destroy', admin_user_path(user), method: :delete %>
+<% end %>
+</li>
+</ul>
+
+</div>

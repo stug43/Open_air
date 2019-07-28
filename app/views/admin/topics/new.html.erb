@@ -1,0 +1,17 @@
+<%= form_for admin_topics_path do |k| %>
+	highlighted_category: <%= k.text_field :highlighted_category %><br />
+	title: <%= k.text_field :title %><br />
+	short_description: <%= k.text_field :short_description %><br />
+	driver_section_title: <%= k.text_field :driver_section_title %><br />
+	driver_section_intro: <%= k.text_field :driver_section_intro %><br />
+	pressure_section_title: <%= k.text_field :pressure_section_title %><br />
+	pressure_section_intro: <%= k.text_field :pressure_section_intro %><br />
+	state_section_title: <%= k.text_field :state_section_title %><br />
+	state_section_intro: <%= k.text_field :state_section_intro %><br />
+	impact_section_title: <%= k.text_field :impact_section_title %><br />
+	impact_section_intro: <%= k.text_field :impact_section_intro %><br />
+	response_section_title: <%= k.text_field :response_section_title %><br />
+	response_section_intro: <%= k.text_field :response_section_intro %><br />
+
+	<%= k.submit %>
+<% end %>
