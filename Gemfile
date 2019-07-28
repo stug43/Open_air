@@ -84,8 +84,6 @@ gem 'jquery-rails'
 gem 'letter_opener', group: :development
 gem 'linea'
 gem 'mini_racer'
-gem 'rails_admin', github: 'sferik/rails_admin'
-gem 'rails_admin_rollincode', '~> 1.0', git: 'https://github.com/Nic0b/rails_admin_theme.git'
 gem 'simple-line-icons-rails'
 gem 'table_print'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
