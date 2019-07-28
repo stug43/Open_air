@@ -61,7 +61,7 @@ models_array.each do |model|
 
     when 'User'
       if User.all.size == models_items_count[model.name] - 1
-        User.create(first_name: 'Had', last_name: 'Minh', email: 'admin@admin.com', password: 'AdminAdmin', is_admin: true)
+        User.create(first_name: 'Had', last_name: 'Minh', email: 'admin@admin.com', password: 'AdminAdmin', admin?: true)
         puts 'The password of User admin@admin.com is AdminAdmin (admin rights)'
       else
         password = Faker::Internet.password(13, 25, true, true)
