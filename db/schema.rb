@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_21_121304) do
+ActiveRecord::Schema.define(version: 2019_07_25_143229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,14 +48,12 @@ ActiveRecord::Schema.define(version: 2019_03_21_121304) do
   create_table "datasets", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "topic_id"
     t.string "title"
     t.string "db_link"
     t.string "dpsir_category"
     t.text "description"
     t.boolean "rendered"
     t.string "file_type"
-    t.index ["topic_id"], name: "index_datasets_on_topic_id"
   end
 
   create_table "topics", force: :cascade do |t|
@@ -73,6 +71,15 @@ ActiveRecord::Schema.define(version: 2019_03_21_121304) do
     t.text "impact_section_intro"
     t.string "response_section_title"
     t.text "response_section_intro"
+  end
+
+  create_table "topics_and_datasets_links", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "topic_id"
+    t.bigint "dataset_id"
+    t.index ["dataset_id"], name: "index_topics_and_datasets_links_on_dataset_id"
+    t.index ["topic_id"], name: "index_topics_and_datasets_links_on_topic_id"
   end
 
   create_table "users", force: :cascade do |t|
