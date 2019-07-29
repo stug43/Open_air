@@ -5,6 +5,7 @@ class Admin::TopicsController < ApplicationController
 	def create
 	end
 	def edit
+		@topic = Topic.find(params[:id])
 	end
 	def update
 	end
