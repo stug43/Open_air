@@ -148,7 +148,7 @@ RailsAdmin.config do |config|
         label 'Modifié le:'
         date_format :default
       end
-      field :topic do
+      field :topics do
         label 'Articles'
       end
       field :title do
@@ -162,7 +162,7 @@ RailsAdmin.config do |config|
     # change fiels in dataset's edit page
 
     edit do
-      field :topic do
+      field :topics do
         label 'Article'
       end
       field :title do
