@@ -19,8 +19,26 @@
 }
 /*End of github*/
 
-#mapid {
-	width: 100%;
-	height: 700px;
+#mapida {
+    width: 100%;
+    height: 700px;
 
+}
+
+
+#mapidan {
+    width: 100%;
+    height: 700px;
+
+}
+
+#mapid_ozone {
+    width: 100%;
+    height: 700px;
+
+}
+
+#mapid_ozone_atmosud {
+    width: 100%;
+    height: 700px;
 }

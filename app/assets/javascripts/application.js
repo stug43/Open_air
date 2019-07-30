@@ -58,4 +58,5 @@
 
 //= require boomerang.min
 //= require leaflet
+//= require Chart.min
 //= require_tree .

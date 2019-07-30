@@ -3,7 +3,8 @@
 class Topic < ApplicationRecord
   after_create :tweet_new_topic
   has_one_attached :main_picture
-  has_many :datasets
+  has_many :topics_and_datasets_links
+  has_many :datasets, through: :topics_and_datasets_links
 
   validates :title, presence: true, uniqueness: true
   validates :short_description, presence: true, uniqueness: true

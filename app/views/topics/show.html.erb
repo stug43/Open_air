@@ -45,6 +45,24 @@
                     <!-- SIDEBAR MENU -->
                     <%= render partial: "topic_sidebar_menu", locals: {topic: @topic} %>
                 </div>
+                    <div class="block-body block-post-body">
+                        <p class="text-justify">
+                            <%=@topic.short_description.html_safe%>
+                        </p>
+                    </div>
+                    <br><br><br>
+                    <%= render partial: "dpsir_category_section", locals: {category_section: 'driver_section', category_section_title: @topic.driver_section_title, category_section_intro: @topic.driver_section_intro, category_datasets: @driver_datasets, plot_maps_and_graphs: @dataweek_article_boolean } %>
+                    <%= render partial: "dpsir_category_section", locals: {category_section: 'pressure_section', category_section_title: @topic.pressure_section_title, category_section_intro: @topic.pressure_section_intro, category_datasets: @pressure_datasets, plot_maps_and_graphs: @dataweek_article_boolean } %>
+                    <%= render partial: "dpsir_category_section", locals: {category_section: 'state_section', category_section_title: @topic.state_section_title, category_section_intro: @topic.state_section_intro, category_datasets: @state_datasets, plot_maps_and_graphs: @dataweek_article_boolean } %>
+                    <%= render partial: "dpsir_category_section", locals: {category_section: 'impact_section', category_section_title: @topic.impact_section_title, category_section_intro: @topic.impact_section_intro, category_datasets: @impact_datasets, plot_maps_and_graphs: @dataweek_article_boolean  } %>
+                    <%= render partial: "dpsir_category_section", locals: {category_section: 'response_section', category_section_title: @topic.response_section_title, category_section_intro: @topic.response_section_intro, category_datasets: @response_datasets, plot_maps_and_graphs: @dataweek_article_boolean  } %>
+                    
+                </div>
+
+            </div>
+            <div class="col-sm-3">
+                <!-- SIDEBAR MENU -->
+                <%= render partial: "topic_sidebar_menu", locals: {topic: @topic} %>
             </div>
         </div>
         <%= render partial: "other_articles", locals: {related_topics: @related_topics} %>
@@ -53,3 +71,5 @@
     <%= render "layouts/footer" %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
 </section>
+</section>
+<%= render partial: "other_articles", locals: {related_topics: @related_topics} %>

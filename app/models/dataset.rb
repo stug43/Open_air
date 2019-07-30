@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class Dataset < ApplicationRecord
-  belongs_to :topic
   has_many :dataset_collections
+	has_many :topics_and_datasets_links
+  has_many :topics, through: :topics_and_datasets_links
 
   validates :title, presence: true
   validates :db_link, presence: true
