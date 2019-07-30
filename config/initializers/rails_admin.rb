@@ -148,9 +148,6 @@ RailsAdmin.config do |config|
         label 'Modifié le:'
         date_format :default
       end
-      field :topic do
-        label 'Articles'
-      end
       field :title do
         label 'Titre'
       end
@@ -162,9 +159,6 @@ RailsAdmin.config do |config|
     # change fiels in dataset's edit page
 
     edit do
-      field :topic do
-        label 'Article'
-      end
       field :title do
         label 'Titre'
         help "Obligatoire - Titre de l'article"
