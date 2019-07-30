@@ -1,15 +1,36 @@
 <div class="container">
   <h3>Database disponible</h3>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Type</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+    <% l = 0 %>
+	<% while l < @test.length %>
+        <tr>
+          <td><%= l %></td>
+          <td><%= @test[l]["title"] %></td>
+          <td>CSV, PDF</td>
+          
+        </tr>
+        <% l = l + 1 %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <br>
+  <br>
 
-<div id="searchengine">
-  <%= form_tag(searchs_path, method: :get) do %>
-  Find your data : <%= text_field_tag :mySuperParam, params[:mySuperParam] %>
-  <%= submit_tag 'Search', name: nil %>
-<% end %>
-</div>
- <br>
+  
 
-<% if params[:mySuperParam] %>
+
+
   <div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
@@ -31,9 +52,8 @@
 
               <% b = 0 %>
               <% while b < @test[l]["resources"].length %>
-             
+              <br>
               <%= @test[l]["resources"][b]["name"] %>
-               <br>
               <% b = b + 1 %>
               <%end%>
 
@@ -46,8 +66,7 @@
     </div>
   </div>
 </div>
-<% end %>
+
 
  <br>
  <br>
-
