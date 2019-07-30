@@ -5,6 +5,21 @@
 		<h1 class="text-center">Bienvenue dans votre librairie</h1>
 		<div class="card no-border">
 			<div>
+<div id="searchengine">
+	<%= form_tag(user_dataset_collection_path, method: :get) do %>
+  Find your data : <%= text_field_tag :results, params[:results] %>
+  <%= submit_tag 'Search', name: nil %>
+<% end %>
+</div>
+<div id="showresults">
+	<% if @results.size > 0 %>
+	<% j = 0 %>
+	<% while j < @results.size %>
+		<%= @results[j]["name"] %>
+	<% j += 1 %>
+	<% end %>
+	<% end %>
+</div>
 				<% if (@datasets.length > 0) %>
 					<%= render "filled_dataset_collection" %>
 				<% else %>

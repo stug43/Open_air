@@ -91,6 +91,7 @@ gem 'table_print'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # https://stackoverflow.com/questions/23727468/error-with-active-record-translations
+gem 'httparty'
 gem 'nokogiri'
 gem 'rails-i18n', '~> 5.1'
 gem 'leaflet-rails'

@@ -26,7 +26,7 @@
             <!-- RIGHT ALIGNED NAVBAR -->
             <ul class="navbar-nav ml-lg-auto">
 							<li class="nav-item">
-								<% if (current_user && current_user.is_admin) %>
+								<% if (current_user && current_user.admin?) %>
 									<%= link_to "Espace rédaction", rails_admin.dashboard_path, class: "nav-link dropdown-item" %>
 								<% end %>
 							</li>

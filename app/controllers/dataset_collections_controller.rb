@@ -4,6 +4,7 @@ class DatasetCollectionsController < ApplicationController
   before_action :access_my_collection_only
 
   def show
+		@results = get_api(params[:results])
     @datasets = []
     DatasetCollection.where(user: current_user).each do |dataset|
       @datasets << dataset.dataset
@@ -41,6 +42,22 @@ class DatasetCollectionsController < ApplicationController
   end
 
   private
+
+def get_api(a)
+  i = 0
+  t = []
+  search = a.to_s
+  url = "https://trouver.datasud.fr/api/3/action/package_search?q=#{search}"
+  response = HTTParty.get(url)
+  data = response.parsed_response["result"]["results"]
+  puts data.length
+  while i < data.length
+    t << data[i]["title"]
+    i = i + 1
+  end
+  
+  return t
+end
 
   def access_my_collection_only
     unless current_user && (params[:user_id].to_i == current_user.id)
