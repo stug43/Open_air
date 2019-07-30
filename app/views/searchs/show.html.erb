@@ -1,5 +1,13 @@
 <div class="container">
   <h3>Database disponible</h3>
+
+<div id="searchengine">
+  <%= form_tag(searchs_path, method: :get) do %>
+  Find your data : <%= text_field_tag :mySuperParam, params[:mySuperParam] %>
+  <%= submit_tag 'Search', name: nil %>
+<% end %>
+</div>
+
   <div class="table-responsive">
     <table class="table">
       <thead>
@@ -11,6 +19,7 @@
         </tr>
       </thead>
       <tbody>
+<% if params[:mySuperParam] %>
     <% l = 0 %>
 	<% while l < @test.length %>
         <tr>
@@ -21,6 +30,7 @@
         </tr>
         <% l = l + 1 %>
         <% end %>
+<% end %>
       </tbody>
     </table>
   </div>
