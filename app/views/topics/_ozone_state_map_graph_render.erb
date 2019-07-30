@@ -23,4 +23,44 @@ Issue des données de l'association Atmosud, un niveau moyen des niveaux de conc
 	<p> Ci-dessous les concentrations moyennes par heure d'Ozone (O3) </p>
 	<canvas id="myChart" width="750" height="550"></canvas>
 </div>
+<br>
+<section class="slice-lg sct-color-1 border-top">
+	<div class="container">
+<h3 class='text-center'>Les indices de la qualité de l'air L'indice en temps réel</h3>
+
+<p>Une valeur de 90 correspond au seuil d’information réglementaire pour l'un des polluants (O3, NO2, PM10). Une valeur de 100 correspond au seuil d'alerte.
+</p>
+		<div class="row align-items-center cols-xs-space cols-sm-space cols-md-space">
+			<div class="col-lg-5 order-lg-2 ml-lg-auto">
+
+
+				<div class="">
+					<% @atmo = @atmos.city_air_indice %>
+					<% @atmo_name = @atmos.array_name %>
+					
+					<%i = 0 %>
+					<% @atmo.each do |value| %>
+					
+					<div class="progress-wrapper">
+						<h4 class="progress-label text-uppercase strong-500"> <%= @atmo_name[i] %> </h4>
+						<% i += 1 %>
+						<h4 class="progress-percentage text-uppercase strong-600"><%= value %>%</h4>
+						<div class="progress progress-sm">
+							<% define_alerte = AtmoSud.new.define_color_alerte(value) %>
+							<div class= "progress-bar" role="progressbar" aria-valuenow="<%= value %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= value %>%; background-color: <%= define_alerte %>" ></div>
+						</div>
+					</div>
+					
+					<% end %>
+				<footer class="blockquote-footer text-right">Source <cite title="Source Title">Atmo Sud</cite></footer>
+			</div>
+		</div>
+		<div class="col-lg-6 order-lg-1">
+			
+			<%= image_tag('atmo.png', class:"img-fluid")%>
+		</div>
+	</div>
+</div>
+</section>
+
 

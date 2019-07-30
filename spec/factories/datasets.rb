@@ -3,7 +3,6 @@
 FactoryBot.define do
   factory :dataset do
     title { 'Activité maritime Marseille/Fos' }
-    topic { FactoryBot.create(:topic, :with_main_picture) }
     # First topic is the Maritime Port, for which specific datasets are linked
     db_link { 'https://trouver.datasud.fr/dataset/les-lignes-maritimes-regulieres-touchant-le-port-de-marseille-fos' }
     dpsir_category { 'Driver' }
