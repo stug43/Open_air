@@ -1,8 +1,10 @@
-// OZONE MAP FROM ATMOSUD
+var mapid = L.map('mapid').setView([43.307827, 5.404262], 12);
 
-var mapid_ozone_atmosud_varjs = L.map('mapida').setView([43.807827, 6.204262], 8);
-
-//fitBounds([[42.858, 4.855], [45.731, 7.759]]);
+// L.tileLayer(
+// 	'https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}', 
+// 	{
+// 		maxZoom: 20
+// 		}).addTo(mapid);
 
 
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
@@ -10,19 +12,23 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
     maxZoom: 18,
     id: 'mapbox.streets',
     transparent: true,    
-    opacity: 0.7,
+	opacity: 0.7,
     accessToken: 'pk.eyJ1IjoidG1pcXVlbCIsImEiOiJjanU5d3AzenEyY2QxNDRucnF2c3pydW8wIn0.PQGiuirI2MraPTanoBJzRQ'
-}).addTo(mapid_ozone_atmosud_varjs);
+}).addTo(mapid);
 
 
 var wmsLayer = L.tileLayer.wms('http://geoservices.atmosud.org/geoserver/mod_sudpaca_2017/wms?', {
-    layers: 'mod_sudpaca_2017_o3_p932m8hj',
+    layers: 'mod_sudpaca_2017_no2_moyan',
     format: 'image/png',
     transparent: true,    
-    opacity: 0.7
-}).addTo(mapid_ozone_atmosud_varjs);
+	opacity: 0.7
+}).addTo(mapid);
 
 
+/*
+ * L.Control.WMSLegend is used to add a WMS Legend to the map
+ * https://github.com/kartoza/leaflet-wms-legend/blob/master/leaflet.wmslegend.js
+ */
 
 L.Control.WMSLegend = L.Control.extend({
     options: {
@@ -78,9 +84,12 @@ L.Control.WMSLegend = L.Control.extend({
 L.wmsLegend = function (uri) {
     var wmsLegendControl = new L.Control.WMSLegend;
     wmsLegendControl.options.uri = uri;
-    mapid_ozone_atmosud_varjs.addControl(wmsLegendControl);
+    mapid.addControl(wmsLegendControl);
     return wmsLegendControl;
 };
+
+// End of https://github.com/kartoza/leaflet-wms-legend/blob/master/leaflet.wmslegend.js
+
 
 
 
@@ -89,18 +98,17 @@ L.wmsLegend = function (uri) {
 //https://docs.geoserver.org/latest/en/user/services/wms/get_legend_graphic/index.html
 //https://gis.stackexchange.com/questions/182770/how-to-add-wms-legend-in-leaflet-from-geoserver
 var legend = L.control({position: 'topright'});
-legend.onAdd = function (mapid_ozone_atmosud_varjs) {
-        var div = L.DomUtil.create('div','info legend');
-        
+legend.onAdd = function (mapid) {
+		var div = L.DomUtil.create('div','info legend');
+		
 
-        uri = 'http://geoservices.atmosud.org/geoserver/mod_sudpaca_2017/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=mod_sudpaca_2017_o3_p932m8hj';
+		uri = 'http://geoservices.atmosud.org/geoserver/mod_sudpaca_2017/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=mod_sudpaca_2017_no2_moyan';
 
-        L.wmsLegend(uri);
-        return div;
-    };
-legend.addTo(mapid_ozone_atmosud_varjs);
+		L.wmsLegend(uri);
+		return div;
+	};
+legend.addTo(mapid);
 
-L.control.scale({imperial:false}).addTo(mapid_ozone_atmosud_varjs);
-
+L.control.scale({imperial:false}).addTo(mapid);
 
 
