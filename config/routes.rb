@@ -8,5 +8,6 @@ Rails.application.routes.draw do
     resource 'dataset_collection', only: %i[show create destroy]
   end
   root to: 'topics#index'
+  resources :searchs
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -1,5 +1,6 @@
 class AtmoSud
 require 'nokogiri'
+require 'httparty'
 
   def hash_city
     city = {"Marseille" => "13055", "Toulon" => "83137","Aix en Provence" => "13001", "Avignon" => "84007", "Nice" => "06088", "Gap" => "05061"}
@@ -53,6 +54,27 @@ def city(a)
   page  = Nokogiri::HTML(open("https://www.atmosud.org/monair/commune/#{i.to_i}")) 
   return page.xpath('/html/body/main/section[1]/div[2]/div/div/div/div[1]/div[1]/a/div[1]/div[1]/div[1]/div[1]').text
 
+end
+
+
+def get_api(a)
+
+  i = 0
+  search = a.to_s
+  url = "https://trouver.datasud.fr/api/3/action/package_search?q=#{search}"
+
+  response = HTTParty.get(url)
+
+  data = response.parsed_response["result"]["results"]
+  puts data.length
+
+ # while i < data.length
+
+  #  puts data[i]["name"]
+   # i = i + 1
+
+  #end
+  return data
 end
 
 end
