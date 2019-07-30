@@ -23,6 +23,7 @@ RailsAdmin.config do |config|
   ## == Gravatar integration ==
   ## To disable Gravatar integration in Navigation Bar set to false
   # config.show_gravatar = true
+     
 
   config.actions do
     dashboard                     # mandatory
@@ -38,12 +39,18 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
+     
   # admin's page title
   config.main_app_name = ['Open Air']
 
   config.model 'DatasetCollection' do
     visible false
   end
+      
+  config.navigation_static_links = {
+  'Recherche Datasets' => 'http://localhost:3000/searchs'
+}
+
   #--------------------------TOPICS--------------------#
 
   # change fields label
