@@ -1,4 +1,4 @@
-<%= form_for(topics, url: admin_topics_path) do |f| %>
-<%= f.label :title %><br />
-<%= f.title_field :title, class: "form-control form-control-lg" %>
+<%= form_for [:admin, @topic], html: { :multipart => true } do |f| %>
+<%= render "form" %>
 <% end %>
+<br><br>

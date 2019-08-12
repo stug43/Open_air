@@ -1,1 +1,3 @@
-$("li#<%= @topic_id %>").remove();
+$('.delete_topic').bind('ajax:success', function() {     
+  $(this).closest('tr').fadeOut();
+});

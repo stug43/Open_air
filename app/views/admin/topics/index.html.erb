@@ -1,22 +1,23 @@
-<div class="container">
-	<table class="col-10 mx-auto mb-5">
-		<thead>
-			<tr>
-				<th colspan="3">
-					Admin action on topics
-				</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-		<% @topics.each do |topic| %>
-			<td class="list-group-item d-flex justify-content-between align-items-center">
-          <%= topic.title %>
-          <%= link_to 'Destroy', admin_topic_path(topic), method: :delete %>
-          <%= link_to 'Edit', edit_admin_topic_path(topic) %>
-			</td>
-		<% end %>
-			</tr>
-		</tbody>
-	</table>
+<div>
+
+<div>
+</div>
+
+<div class="col-lg-8 mx-auto">
+  <div class="main-content">
+
+    <!-- Order history table -->
+    <h1 class="text-center">Gestion des  Articles</h1>
+    <div class="card no-border">
+      <div>
+        <% if (@topics.length > 0) %>
+          <%= render "filled_topic_collection" %>
+        <% else %>
+          <%= render "empty_topic_collection" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
 </div>

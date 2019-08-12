@@ -1,0 +1,22 @@
+<table class="table table-sm table-hover my-5">
+  <tbody>
+    <% @topics.each do |topic| %>
+    <tr>
+      <td>
+        <%= topic.title %>
+      </td>
+      <td>
+        <span class="badge badge--2 mr-4">
+          <i class="bg-blue"></i><%= link_to "Editer l'article", edit_admin_topic_path(topic), class: "text-dark" %>
+        </span>
+      </td>
+      <td>
+        <%= link_to admin_topic_path(topic), method: :delete, :remote => true, :class => 'delete_topic' do %>
+        <i class="ion-trash-a"></i>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
