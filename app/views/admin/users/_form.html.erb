@@ -1,0 +1,13 @@
+<%= form_for [:admin, @user] do |k| %>
+<%= k.label :first_name %>
+<%= k.text_field :first_name, class:"form-control" %>
+<br />
+<%= k.label :last_name %>
+<%= k.text_field :last_name, class:"form-control" %>
+<br />
+<%= k.label :email %>
+<%= k.text_field :email, class:"form-control" %>
+<br />
+<%= k.submit class:"btn" %>
+<% end %>
+

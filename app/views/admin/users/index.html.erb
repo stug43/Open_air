@@ -1,14 +1,23 @@
-<div class="container">
-<ul>
+<div>
 
-       <% @users.each_with_index do |user, index| %>
-       <li class="list-group-item d-flex justify-content-between align-items-center">
-          Nom: <%= user.last_name %> <br> 
-          Prénom: <%= user.first_name %> 
-					<%= link_to 'Edit', edit_admin_user_path(user) %>
-          <%= link_to 'Destroy', admin_user_path(user), method: :delete %>
-<% end %>
-</li>
-</ul>
+<div>
+</div>
+
+<div class="col-lg-8 mx-auto">
+  <div class="main-content">
+
+    <!-- Order history table -->
+    <h1 class="text-center">Gestion des utilisateurs</h1>
+    <div class="card no-border">
+      <div>
+        <% if (@users.length > 0) %>
+          <%= render "filled_user_collection" %>
+        <% else %>
+          <%= render "empty_user_collection" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 
 </div>

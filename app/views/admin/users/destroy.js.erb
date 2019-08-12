@@ -1,1 +1,3 @@
-$("li#<%= @user_id %>").remove();
+$('.delete_user').bind('ajax:success', function() {     
+  $(this).closest('tr').fadeOut();
+});
