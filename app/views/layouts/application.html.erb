@@ -30,6 +30,9 @@
               <!-- Header -->
               <%= render "topics/topic-index-banner" %>
               <section class="bg-base-5 slice sct-color-1">
+								<% if controller.class.parents.include?(Admin) %>
+									<%= render "layouts/admin/side_menu" %>
+								<% end %>
                 <div class="bg-base-5 container">
                   <%= render 'layouts/flash' %>
                   <%= yield %>
