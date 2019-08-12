@@ -6,6 +6,7 @@ before_action :is_admin?
 	end 
 
 	def edit
+		@user = User.find(params[:id])
 	end
 
 	def update
@@ -17,9 +18,23 @@ def destroy
 
     respond_to do |format|
       format.html { redirect_to admin_users_path }
-      
-      
+      format.js { render :layout => false }
     end
 end
+
+private
+protected
+
+	def admin_upgrade(user)
+		if !user.admin?
+			user.update(admin?: true)
+		end
+	end
+
+	def admin_downgrade(user)
+    if user.admin?
+      user.update(admin?: false)
+    end
+  end
 
 end
