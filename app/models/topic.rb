@@ -5,6 +5,8 @@ class Topic < ApplicationRecord
   has_one_attached :main_picture
   has_many :topics_and_datasets_links
   has_many :datasets, through: :topics_and_datasets_links
+	has_many :tag_list_items, as: :taggable
+	has_many :tags, through: :tag_list_items
 
   validates :title, presence: true, uniqueness: true
   validates :short_description, presence: true, uniqueness: true

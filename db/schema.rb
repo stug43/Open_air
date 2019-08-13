@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_25_143229) do
+ActiveRecord::Schema.define(version: 2019_08_13_121601) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,63 @@ ActiveRecord::Schema.define(version: 2019_07_25_143229) do
     t.string "file_type"
   end
 
+  create_table "departments", force: :cascade do |t|
+    t.string "dpt_name"
+    t.string "dpt_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "measurements", force: :cascade do |t|
+    t.bigint "station_id"
+    t.bigint "pollutant_id"
+    t.string "value"
+    t.string "measurement_periodicity"
+    t.string "measurement_start_date"
+    t.string "measurement_end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pollutant_id"], name: "index_measurements_on_pollutant_id"
+    t.index ["station_id"], name: "index_measurements_on_station_id"
+  end
+
+  create_table "pollutants", force: :cascade do |t|
+    t.string "pollutant_name"
+    t.string "datasud_pollutant_id"
+    t.string "measurement_unit"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "stations", force: :cascade do |t|
+    t.bigint "township_id"
+    t.string "station_name"
+    t.string "station_code"
+    t.string "typology"
+    t.string "influence"
+    t.string "latitude"
+    t.string "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["township_id"], name: "index_stations_on_township_id"
+  end
+
+  create_table "tag_list_items", force: :cascade do |t|
+    t.bigint "tag_id"
+    t.integer "taggable_id"
+    t.string "taggable_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tag_id"], name: "index_tag_list_items_on_tag_id"
+    t.index ["taggable_type", "taggable_id"], name: "index_tag_list_items_on_taggable_type_and_taggable_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "tag_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "topics", force: :cascade do |t|
     t.string "title"
     t.text "short_description"
@@ -82,6 +139,15 @@ ActiveRecord::Schema.define(version: 2019_07_25_143229) do
     t.index ["topic_id"], name: "index_topics_and_datasets_links_on_topic_id"
   end
 
+  create_table "townships", force: :cascade do |t|
+    t.bigint "department_id"
+    t.string "township_name"
+    t.string "insee_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["department_id"], name: "index_townships_on_department_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -96,6 +162,7 @@ ActiveRecord::Schema.define(version: 2019_07_25_143229) do
     t.string "provider"
     t.string "uid"
     t.string "rake"
+    t.boolean "admin?", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

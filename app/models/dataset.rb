@@ -4,6 +4,8 @@ class Dataset < ApplicationRecord
   has_many :dataset_collections
 	has_many :topics_and_datasets_links
   has_many :topics, through: :topics_and_datasets_links
+	has_many :tag_list_items, as: :taggable
+	has_many :tags, through: :tag_list_items
 
   validates :title, presence: true
   validates :db_link, presence: true
