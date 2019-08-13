@@ -6,4 +6,10 @@ class Department < ApplicationRecord
 
 	validates :dpt_name, presence: true
 	validates :dpt_code, presence: true
+
+	def self.get_registred_dpts
+		output = []
+		self.all { |µ| (output << µ.dpt_name).uniq! }
+	end
+
 end
