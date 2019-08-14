@@ -1,13 +1,20 @@
 class Station < ApplicationRecord
 	belongs_to :township
-	belongs_to :department, through: :township
 
 	has_many :measurements
 
 	validates :station_name, presence: true
 	validates :station_code, presence: true
-	validates :typology, presence: true
+	#######################################
+	###  Salon-de-Provence station hasn't typology in datasud csv
+	#validates :typology, presence: true
 	validates :influence, presence: true
 	validates :latitude, presence: true
 	validates :longitude, presence: true
+
+	def self.get_registred_stations
+    output = []
+    self.all { |µ| output << µ.station_name }
+		output.uniq!
+  end
 end
