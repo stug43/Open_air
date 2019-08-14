@@ -9,10 +9,9 @@ class AtmoParse
 		registred_stations = Station.get_registred_stations.to_a
 		url  =  "https://geoservices.atmosud.org/geoserver/mes_sudpaca_horaire_poll_princ/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=mes_sudpaca_horaire_poll_princ:mes_sudpaca_horaire&outputFormat=csv&srsName=EPSG:2154"
 		src = open(url)
-		previous_row = ""
-		compteur = 0
+		previous_row = { :nom_station => "", :nom_poll => "" }
+		last_data = []
 		CSV.foreach(src, {:headers => true, :header_converters => :symbol}) do |current_row|
-			last_data = []
     	if registred_dpts.include?(current_row[:nom_dept])
 				nil
 				puts "nil"
@@ -58,8 +57,12 @@ class AtmoParse
         end
       end
 			######################
-			compteur += 1
-			break if compteur >= 30000
+			if ((previous_row[:nom_station] == current_row[:nom_station])&&(previous_row[:nom_poll] == current_row[:nom_poll]))
+				nil
+			else
+				last_data << [current_row[:nom_dept], current_row[:nom_com], current_row[:nom_station], current_row[:nom_poll], current_row[:valeur], current_row[:unite]]
+			end
+			previous_row = current_row
 		end
 		Department.all.each {|k| puts k.dpt_name}
 		puts
@@ -77,5 +80,7 @@ class AtmoParse
     puts
     puts "*"*120
     puts
+		puts "*µ"*608
+		last_data.each {|î| print "#{î}\n"}
 	end
 end
