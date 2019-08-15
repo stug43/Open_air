@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_13_094443) do
+ActiveRecord::Schema.define(version: 2019_08_15_094230) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,10 +68,11 @@ ActiveRecord::Schema.define(version: 2019_08_13_094443) do
     t.bigint "pollutant_id"
     t.string "value"
     t.string "measurement_periodicity"
-    t.string "measurement_start_date"
-    t.string "measurement_end_date"
+    t.datetime "measurement_start_date"
+    t.datetime "measurement_end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "datasud_measurement_fid_code"
     t.index ["pollutant_id"], name: "index_measurements_on_pollutant_id"
     t.index ["station_id"], name: "index_measurements_on_station_id"
   end
