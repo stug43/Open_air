@@ -7,7 +7,7 @@ class Township < ApplicationRecord
 
 	def self.get_registred_townships
     output = []
-    self.all { |µ| output << µ.township_name }
-		output.uniq!
+    self.all.each { |µ| output << µ.township_name }
+		output.uniq
   end
 end

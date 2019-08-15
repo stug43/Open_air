@@ -14,7 +14,7 @@ class Station < ApplicationRecord
 
 	def self.get_registred_stations
     output = []
-    self.all { |µ| output << µ.station_name }
-		output.uniq!
+    self.all.each { |µ| output << µ.station_name }
+		output.uniq
   end
 end

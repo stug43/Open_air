@@ -13,23 +13,28 @@ class AtmoParse
 		previous_row = { :nom_station => "", :nom_poll => "" }
 		last_hourly_data = []
 		CSV.foreach(src, {:headers => true, :header_converters => :symbol}) do |current_row|
-    	if ((!registred_dpts.include?(current_row[:nom_dept]))&&(dpt = Department.create!(dpt_name: current_row[:nom_dept], dpt_code: current_row[:insee_com][0..1])))
-					puts "successfully created Deptmt " + current_row[:nom_dept]
-					registred_dpts << dpt.dpt_name
-			end
-			if ((!registred_townships.include?(current_row[:nom_com]))&&(town = Township.create!(department_id: Department.where(dpt_name: current_row[:nom_dept]).first, township_name: current_row[:nom_com], insee_code: current_row[:insee_com])))
+			if (!registred_dpts.include?(current_row[:nom_dept]))
+          dpt = Department.create!(dpt_name: current_row[:nom_dept], dpt_code: current_row[:insee_com][0..1])
+          puts "successfully created Deptmt " + current_row[:nom_dept]
+          registred_dpts << dpt.dpt_name
+      end
+      if (!registred_townships.include?(current_row[:nom_com]))
+          town = Township.create!(department_id: Department.where(dpt_name: current_row[:nom_dept]).first, township_name: current_row[:nom_com], insee_code: current_row[:insee_com])
           puts "successfully created Township " + current_row[:nom_com]
-					registred_townships << town.township_name
+          registred_townships << town.township_name
       end
-			if ((!registred_stations.include?(current_row[:nom_station]))&&(station = Station.create!(township: Township.where(township_name: current_row[:nom_com]).first, station_name: current_row[:nom_station], station_code: current_row[:code_station], typology: current_row[:typologie], influence: current_row[:influence], latitude: current_row[:x_l93], longitude: current_row[:y_l93])))
+      if (!registred_stations.include?(current_row[:nom_station]))
+          (station = Station.create!(township: Township.where(township_name: current_row[:nom_com]).first, station_name: current_row[:nom_station], station_code: current_row[:code_station], typology: current_row[:typologie], influence: current_row[:influence], latitude: current_row[:x_l93], longitude: current_row[:y_l93]))
           puts "successfully created Station " + current_row[:nom_station]
-					registred_stations << station.station_name
+          registred_stations << station.station_name
       end
-			if ((!registred_pollutants.include?(current_row[:nom_poll]))&&(poll = Pollutant.create!(pollutant_name: current_row[:nom_poll], datasud_pollutant_id: current_row[:id_poll_ue], measurement_unit: current_row[:unite])))
+      if (!registred_pollutants.include?(current_row[:nom_poll]))
+          poll = Pollutant.create!(pollutant_name: current_row[:nom_poll], datasud_pollutant_id: current_row[:id_poll_ue], measurement_unit: current_row[:unite])
           puts "successfully created Pollutant " + current_row[:nom_poll]
-					registred_pollutants << poll.pollutant_name
+          registred_pollutants << poll.pollutant_name
       end
-			if ((!registred_measurements.include?(current_row[:fid]))&&(current_row[:valeur])&&(measurement = Measurement.create!(station: Station.where(station_name: current_row[:nom_station]).first, pollutant: Pollutant.where(pollutant_name: current_row[:nom_poll]).first, value: current_row[:valeur], measurement_periodicity: current_row[:metrique], measurement_start_date: Date.parse(current_row[:date_debut]), measurement_end_date: Date.parse(current_row[:date_fin]), datasud_measurement_fid_code: current_row[:fid])))
+      if ((!registred_measurements.include?(current_row[:fid]))&&(current_row[:valeur]))
+          measurement = Measurement.create!(station: Station.where(station_name: current_row[:nom_station]).first, pollutant: Pollutant.where(pollutant_name: current_row[:nom_poll]).first, value: current_row[:valeur], measurement_periodicity: current_row[:metrique], measurement_start_date: Date.parse(current_row[:date_debut]), measurement_end_date: Date.parse(current_row[:date_fin]), datasud_measurement_fid_code: current_row[:fid])
           puts "successfully created Measurement"
           registred_measurements << measurement.datasud_measurement_fid_code
       end
@@ -50,23 +55,28 @@ class AtmoParse
     previous_row = { :nom_station => "", :nom_poll => "" }
     last_daily_data = []
     CSV.foreach(src, {:headers => true, :header_converters => :symbol}) do |current_row|
-      if ((!registred_dpts.include?(current_row[:nom_dept]))&&(dpt = Department.create!(dpt_name: current_row[:nom_dept], dpt_code: current_row[:insee_com][0..1])))
+			if (!registred_dpts.include?(current_row[:nom_dept]))
+          dpt = Department.create!(dpt_name: current_row[:nom_dept], dpt_code: current_row[:insee_com][0..1])
           puts "successfully created Deptmt " + current_row[:nom_dept]
           registred_dpts << dpt.dpt_name
       end
-      if ((!registred_townships.include?(current_row[:nom_com]))&&(town = Township.create!(department_id: Department.where(dpt_name: current_row[:nom_dept]).first, township_name: current_row[:nom_com], insee_code: current_row[:insee_com])))
+      if (!registred_townships.include?(current_row[:nom_com]))
+          town = Township.create!(department_id: Department.where(dpt_name: current_row[:nom_dept]).first, township_name: current_row[:nom_com], insee_code: current_row[:insee_com])
           puts "successfully created Township " + current_row[:nom_com]
           registred_townships << town.township_name
       end
-      if ((!registred_stations.include?(current_row[:nom_station]))&&(station = Station.create!(township: Township.where(township_name: current_row[:nom_com]).first, station_name: current_row[:nom_station], station_code: current_row[:code_station], typology: current_row[:typologie], influence: current_row[:influence], latitude: current_row[:x_l93], longitude: current_row[:y_l93])))
+      if (!registred_stations.include?(current_row[:nom_station]))
+          (station = Station.create!(township: Township.where(township_name: current_row[:nom_com]).first, station_name: current_row[:nom_station], station_code: current_row[:code_station], typology: current_row[:typologie], influence: current_row[:influence], latitude: current_row[:x_l93], longitude: current_row[:y_l93]))
           puts "successfully created Station " + current_row[:nom_station]
           registred_stations << station.station_name
       end
-      if ((!registred_pollutants.include?(current_row[:nom_poll]))&&(poll = Pollutant.create!(pollutant_name: current_row[:nom_poll], datasud_pollutant_id: current_row[:id_poll_ue], measurement_unit: current_row[:unite])))
-          puts "successfully created Deptmt " + current_row[:nom_station]
+      if (!registred_pollutants.include?(current_row[:nom_poll]))
+          poll = Pollutant.create!(pollutant_name: current_row[:nom_poll], datasud_pollutant_id: current_row[:id_poll_ue], measurement_unit: current_row[:unite])
+          puts "successfully created Pollutant " + current_row[:nom_poll]
           registred_pollutants << poll.pollutant_name
       end
-			if ((!registred_measurements.include?(current_row[:fid]))&&(current_row[:valeur])&&(measurement = Measurement.create!(station: Station.where(station_name: current_row[:nom_station]).first, pollutant: Pollutant.where(pollutant_name: current_row[:nom_poll]).first, value: current_row[:valeur], measurement_periodicity: current_row[:metrique], measurement_start_date: Date.parse(current_row[:date_debut]), measurement_end_date: Date.parse(current_row[:date_fin]), datasud_measurement_fid_code: current_row[:fid])))
+      if ((!registred_measurements.include?(current_row[:fid]))&&(current_row[:valeur]))
+          measurement = Measurement.create!(station: Station.where(station_name: current_row[:nom_station]).first, pollutant: Pollutant.where(pollutant_name: current_row[:nom_poll]).first, value: current_row[:valeur], measurement_periodicity: current_row[:metrique], measurement_start_date: Date.parse(current_row[:date_debut]), measurement_end_date: Date.parse(current_row[:date_fin]), datasud_measurement_fid_code: current_row[:fid])
           puts "successfully created Measurement"
           registred_measurements << measurement.datasud_measurement_fid_code
       end
@@ -86,24 +96,29 @@ class AtmoParse
     src = open(url)
     previous_row = { :nom_station => "", :nom_poll => "" }
     last_monthly_data = []
-    CSV.foreach(src, {:headers => true, :header_converters => :symbol}) do |current_row|
-      if ((!registred_dpts.include?(current_row[:nom_dept]))&&(dpt = Department.create!(dpt_name: current_row[:nom_dept], dpt_code: current_row[:insee_com][0..1])))
+		CSV.foreach(src, {:headers => true, :header_converters => :symbol}) do |current_row|
+			if (!registred_dpts.include?(current_row[:nom_dept]))
+          dpt = Department.create!(dpt_name: current_row[:nom_dept], dpt_code: current_row[:insee_com][0..1])
           puts "successfully created Deptmt " + current_row[:nom_dept]
           registred_dpts << dpt.dpt_name
       end
-      if ((!registred_townships.include?(current_row[:nom_com]))&&(town = Township.create!(department_id: Department.where(dpt_name: current_row[:nom_dept]).first, township_name: current_row[:nom_com], insee_code: current_row[:insee_com])))
+      if (!registred_townships.include?(current_row[:nom_com]))
+          town = Township.create!(department_id: Department.where(dpt_name: current_row[:nom_dept]).first, township_name: current_row[:nom_com], insee_code: current_row[:insee_com])
           puts "successfully created Township " + current_row[:nom_com]
           registred_townships << town.township_name
       end
-      if ((!registred_stations.include?(current_row[:nom_station]))&&(station = Station.create!(township: Township.where(township_name: current_row[:nom_com]).first, station_name: current_row[:nom_station], station_code: current_row[:code_station], typology: current_row[:typologie], influence: current_row[:influence], latitude: current_row[:x_l93], longitude: current_row[:y_l93])))
+      if (!registred_stations.include?(current_row[:nom_station]))
+          (station = Station.create!(township: Township.where(township_name: current_row[:nom_com]).first, station_name: current_row[:nom_station], station_code: current_row[:code_station], typology: current_row[:typologie], influence: current_row[:influence], latitude: current_row[:x_l93], longitude: current_row[:y_l93]))
           puts "successfully created Station " + current_row[:nom_station]
           registred_stations << station.station_name
       end
-      if ((!registred_pollutants.include?(current_row[:nom_poll]))&&(poll = Pollutant.create!(pollutant_name: current_row[:nom_poll], datasud_pollutant_id: current_row[:id_poll_ue], measurement_unit: current_row[:unite])))
+      if (!registred_pollutants.include?(current_row[:nom_poll]))
+          poll = Pollutant.create!(pollutant_name: current_row[:nom_poll], datasud_pollutant_id: current_row[:id_poll_ue], measurement_unit: current_row[:unite])
           puts "successfully created Pollutant " + current_row[:nom_poll]
           registred_pollutants << poll.pollutant_name
       end
-			if ((!registred_measurements.include?(current_row[:fid]))&&(current_row[:valeur])&&(measurement = Measurement.create!(station: Station.where(station_name: current_row[:nom_station]).first, pollutant: Pollutant.where(pollutant_name: current_row[:nom_poll]).first, value: current_row[:valeur], measurement_periodicity: current_row[:metrique], measurement_start_date: Date.parse(current_row[:date_debut]), measurement_end_date: Date.parse(current_row[:date_fin]), datasud_measurement_fid_code: current_row[:fid])))
+      if ((!registred_measurements.include?(current_row[:fid]))&&(current_row[:valeur]))
+          measurement = Measurement.create!(station: Station.where(station_name: current_row[:nom_station]).first, pollutant: Pollutant.where(pollutant_name: current_row[:nom_poll]).first, value: current_row[:valeur], measurement_periodicity: current_row[:metrique], measurement_start_date: Date.parse(current_row[:date_debut]), measurement_end_date: Date.parse(current_row[:date_fin]), datasud_measurement_fid_code: current_row[:fid])
           puts "successfully created Measurement"
           registred_measurements << measurement.datasud_measurement_fid_code
       end
@@ -123,24 +138,29 @@ class AtmoParse
     src = open(url)
     previous_row = { :nom_station => "", :nom_poll => "" }
     last_annual_data = []
-    CSV.foreach(src, {:headers => true, :header_converters => :symbol}) do |current_row|
-      if ((!registred_dpts.include?(current_row[:nom_dept]))&&(dpt = Department.create!(dpt_name: current_row[:nom_dept], dpt_code: current_row[:insee_com][0..1])))
+		CSV.foreach(src, {:headers => true, :header_converters => :symbol}) do |current_row|
+			if (!registred_dpts.include?(current_row[:nom_dept]))
+          dpt = Department.create!(dpt_name: current_row[:nom_dept], dpt_code: current_row[:insee_com][0..1])
           puts "successfully created Deptmt " + current_row[:nom_dept]
           registred_dpts << dpt.dpt_name
       end
-      if ((!registred_townships.include?(current_row[:nom_com]))&&(town = Township.create!(department_id: Department.where(dpt_name: current_row[:nom_dept]).first, township_name: current_row[:nom_com], insee_code: current_row[:insee_com])))
+      if (!registred_townships.include?(current_row[:nom_com]))
+          town = Township.create!(department_id: Department.where(dpt_name: current_row[:nom_dept]).first, township_name: current_row[:nom_com], insee_code: current_row[:insee_com])
           puts "successfully created Township " + current_row[:nom_com]
           registred_townships << town.township_name
       end
-      if ((!registred_stations.include?(current_row[:nom_station]))&&(station = Station.create!(township: Township.where(township_name: current_row[:nom_com]).first, station_name: current_row[:nom_station], station_code: current_row[:code_station], typology: current_row[:typologie], influence: current_row[:influence], latitude: current_row[:x_l93], longitude: current_row[:y_l93])))
+      if (!registred_stations.include?(current_row[:nom_station]))
+          (station = Station.create!(township: Township.where(township_name: current_row[:nom_com]).first, station_name: current_row[:nom_station], station_code: current_row[:code_station], typology: current_row[:typologie], influence: current_row[:influence], latitude: current_row[:x_l93], longitude: current_row[:y_l93]))
           puts "successfully created Station " + current_row[:nom_station]
           registred_stations << station.station_name
       end
-      if ((!registred_pollutants.include?(current_row[:nom_poll]))&&(poll = Pollutant.create!(pollutant_name: current_row[:nom_poll], datasud_pollutant_id: current_row[:id_poll_ue], measurement_unit: current_row[:unite])))
+      if (!registred_pollutants.include?(current_row[:nom_poll]))
+          poll = Pollutant.create!(pollutant_name: current_row[:nom_poll], datasud_pollutant_id: current_row[:id_poll_ue], measurement_unit: current_row[:unite])
           puts "successfully created Pollutant " + current_row[:nom_poll]
           registred_pollutants << poll.pollutant_name
       end
-			if ((!registred_measurements.include?(current_row[:fid]))&&(current_row[:valeur])&&(measurement = Measurement.create!(station: Station.where(station_name: current_row[:nom_station]).first, pollutant: Pollutant.where(pollutant_name: current_row[:nom_poll]).first, value: current_row[:valeur], measurement_periodicity: current_row[:metrique], measurement_start_date: Date.parse(current_row[:date_debut]), measurement_end_date: Date.parse(current_row[:date_fin]), datasud_measurement_fid_code: current_row[:fid])))
+      if ((!registred_measurements.include?(current_row[:fid]))&&(current_row[:valeur]))
+          measurement = Measurement.create!(station: Station.where(station_name: current_row[:nom_station]).first, pollutant: Pollutant.where(pollutant_name: current_row[:nom_poll]).first, value: current_row[:valeur], measurement_periodicity: current_row[:metrique], measurement_start_date: Date.parse(current_row[:date_debut]), measurement_end_date: Date.parse(current_row[:date_fin]), datasud_measurement_fid_code: current_row[:fid])
           puts "successfully created Measurement"
           registred_measurements << measurement.datasud_measurement_fid_code
       end

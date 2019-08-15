@@ -7,7 +7,7 @@ class Pollutant < ApplicationRecord
 
 	def self.get_registred_pollutants
     output = []
-    self.all { |µ| output << µ.pollutant_name }
-		output.uniq!
+    self.all.each { |µ| output << µ.pollutant_name }
+		output.uniq
   end
 end

@@ -10,7 +10,7 @@ class Measurement < ApplicationRecord
 
 	def self.get_registred_measurements
     output = []
-    self.all { |µ| output << µ.datasud_measurement_fid_code }
-    output.uniq!
+    self.all.each { |µ| output << µ.datasud_measurement_fid_code }
+    output.uniq
   end
 end

@@ -10,7 +10,6 @@ class Department < ApplicationRecord
 	def self.get_registred_dpts
 		output = []
 		self.all.each { |µ| output << µ.dpt_name }
-		output.uniq!
+		output.uniq
 	end
-
 end
