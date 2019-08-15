@@ -2,7 +2,6 @@ class Measurement < ApplicationRecord
 	belongs_to :station
   belongs_to :pollutant
 
-	validates :datasud_measurement_fid_code, presence: true
 	validates :value, presence: true
 	validates :measurement_periodicity, presence: true
 	validates :measurement_start_date, presence: true 
@@ -10,7 +9,7 @@ class Measurement < ApplicationRecord
 
 	def self.get_registred_measurements
     output = []
-    self.all.each { |µ| output << µ.datasud_measurement_fid_code }
+    self.all.each { |µ| output << [µ.station.station_name, µ.pollutant.pollutant_name, µ.measurement_start_date] }
     output.uniq
   end
 end
