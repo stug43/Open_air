@@ -49,6 +49,8 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
+    active_median (0.2.2)
+      activerecord (>= 4.2)
     activejob (5.2.2.1)
       activesupport (= 5.2.2.1)
       globalid (>= 0.3.6)
@@ -113,6 +115,7 @@ GEM
       xpath (~> 3.2)
     chart-js-rails (0.1.6)
       railties (> 3.1)
+    chartkick (3.2.1)
     childprocess (0.9.0)
       ffi (~> 1.0, >= 1.0.11)
     chromedriver-helper (2.1.0)
@@ -163,6 +166,8 @@ GEM
     formatador (0.2.5)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    groupdate (4.1.2)
+      activesupport (>= 4.2)
     guard (2.15.0)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
@@ -426,6 +431,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_median
   aws-sdk-s3
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.3.1)
@@ -433,6 +439,7 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   chart-js-rails
+  chartkick
   chromedriver-helper
   coffee-rails (~> 4.2)
   devise
@@ -443,6 +450,7 @@ DEPENDENCIES
   fastercsv
   file_validators
   font-awesome-rails
+  groupdate
   guard-rspec
   high_voltage (~> 3.1)
   ionicons-rails

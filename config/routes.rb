@@ -3,6 +3,7 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :topics
+	resources :chartgraphs
   devise_for :users
   resources :users do
     resource 'dataset_collection', only: %i[show create destroy]

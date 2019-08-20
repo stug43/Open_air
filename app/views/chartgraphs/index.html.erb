@@ -1,0 +1,14 @@
+<%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
+<%= javascript_include_tag 'application' %>
+<div>
+<h2>Nombre de mesures par polluants :</h2>
+<%= pie_chart @hourly_measurements.joins(:pollutant).group("pollutants.pollutant_name").count, donut: true %>
+<h2>Mesures quotidiennes :</h2>
+<h2>Mesures mensuelles :</h2>
+<%= line_chart @monthly_measurements.where(station: @random_station, pollutant: @monthly_measurements.where(station: @random_station).sample.pollutant).pluck(:measurement_end_date, :value).to_h %>
+<h2>Mesures annuelles :</h2>
+<%= line_chart @annual_measurements %>
+</div>
+<div id="byebug-div">
+<%= @monthly_measurements %>
+</div>

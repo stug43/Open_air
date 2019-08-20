@@ -1,0 +1,6 @@
+<%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
+<%= javascript_include_tag 'application' %>
+<div>
+<h2>Mesures horaires :</h2>
+<%= line_chart Measurement.where(pollutant: Pollutant.where(pollutant_name: params[:id]).sample).group_by_day(:measurement_end_date).count %>
+</div>

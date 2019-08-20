@@ -2,6 +2,7 @@ class Station < ApplicationRecord
 	belongs_to :township
 
 	has_many :measurements
+	has_many :pollutants, through: :measurements
 
 	validates :station_name, presence: true
 	validates :station_code, presence: true
