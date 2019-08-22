@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  #get 'map/index'
+  #get 'map/show'
+  resources :map 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :topics
 	resources :chartgraphs

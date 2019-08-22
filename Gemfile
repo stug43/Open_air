@@ -101,3 +101,7 @@ gem 'chartkick'
 gem 'groupdate'
 gem 'fastercsv'
 gem 'active_median'
+gem "rgeo"
+gem 'rgeo-activerecord'
+gem 'rgeo-geojson'
+gem 'geocoder'
