@@ -105,3 +105,5 @@ gem "rgeo"
 gem 'rgeo-activerecord'
 gem 'rgeo-geojson'
 gem 'geocoder'
+gem "geo_coord", require: "geo/coord"
+
