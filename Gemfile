@@ -91,13 +91,12 @@ gem 'table_print'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # https://stackoverflow.com/questions/23727468/error-with-active-record-translations
-gem 'nokogiri'
+gem 'nokogiri', "~> 1.10.4"
 gem 'rails-i18n', '~> 5.1'
-gem 'leaflet-rails'
+gem 'leaflet-rails', '~> 1.5.1'
 gem 'twitter'
 gem 'bootstrap-wysihtml5-rails', '> 0.3.1.24'
 gem 'chart-js-rails'
 gem 'chartkick'
 gem 'groupdate'
 gem 'fastercsv'
-gem 'active_median'

@@ -19,12 +19,16 @@ class AtmoParse
           registred_dpts << dpt.dpt_name
       end
       if (!registred_townships.include?(current_row[:nom_com]))
-          town = Township.create!(department_id: Department.where(dpt_name: current_row[:nom_dept]).first, township_name: current_row[:nom_com], insee_code: current_row[:insee_com])
+          town = Township.new(department: Department.where(dpt_name: current_row[:nom_dept]).sample, township_name: current_row[:nom_com], insee_code: current_row[:insee_com])
+					puts town.save
           puts "successfully created Township " + current_row[:nom_com]
+					puts town.department.dpt_name
           registred_townships << town.township_name
       end
       if (!registred_stations.include?(current_row[:nom_station]))
-          (station = Station.create!(township: Township.where(township_name: current_row[:nom_com]).first, station_name: current_row[:nom_station], station_code: current_row[:code_station], typology: current_row[:typologie], influence: current_row[:influence], latitude: current_row[:x_l93], longitude: current_row[:y_l93]))
+					correct_coordinates = GustaveConverter.new.convert_coordinates(current_row[:x_l93], current_row[:y_l93])
+          (station = Station.new(township: Township.where(township_name: current_row[:nom_com]).first, station_name: current_row[:nom_station], station_code: current_row[:code_station], typology: current_row[:typologie], influence: current_row[:influence], latitude: correct_coordinates[0].to_s, longitude: correct_coordinates[1].to_s))
+					station.save
           puts "successfully created Station " + current_row[:nom_station]
           registred_stations << station.station_name
       end

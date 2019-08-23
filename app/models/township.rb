@@ -1,4 +1,6 @@
 class Township < ApplicationRecord
+	belongs_to :department
+
 	has_many :stations
 	has_many :measurements, through: :stations
 

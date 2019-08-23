@@ -1,8 +1,16 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'maps/index'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :topics
+	resources :maps, only: %i[index]
+	resources :departments, only: %i[index show]
+	resources :townships, only: %i[index show]
+	resources :stations, only: %i[index show] do
+		resources :measurements, only: %i[show]
+	end
+	resources :pollutants, only: %i[index show]
 	resources :chartgraphs
   devise_for :users
   resources :users do

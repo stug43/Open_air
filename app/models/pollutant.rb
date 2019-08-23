@@ -11,4 +11,9 @@ class Pollutant < ApplicationRecord
     self.all.each { |µ| output << µ.pollutant_name }
 		output.uniq
   end
+
+	def pollutant_prefix
+		(self.pollutant_name.delete(" ").downcase[0].scan(/[aeiou]/).size > 0 ? "d'" : "de ")
+	end		
+
 end

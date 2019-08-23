@@ -1,0 +1,11 @@
+<%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
+<%= javascript_include_tag 'application' %>
+<h2>Mesures horaires :</h2>
+<%= line_chart @hourly_measurements.where(station: @station, pollutant: @pollutant).pluck(:measurement_end_date, :value).to_h, xtitle: "Date", ytitle: "Concentration en #{@pollutant.measurement_unit}" %>
+<h2>Mesures quotidiennes :</h2>
+<%= line_chart @daily_measurements.where(station: @station, pollutant: @pollutant).pluck(:measurement_end_date, :value).to_h, xtitle: "Date", ytitle: "Concentration en #{@pollutant.measurement_unit}" %>
+<h2>Mesures mensuelles :</h2>
+<%= line_chart @monthly_measurements.where(station: @station, pollutant: @pollutant).pluck(:measurement_end_date, :value).to_h, xtitle: "Date", ytitle: "Concentration en #{@pollutant.measurement_unit}" %>
+<h2>Mesures annuelles :</h2>
+<%= line_chart @annual_measurements.where(station: @station, pollutant: @pollutant).pluck(:measurement_end_date, :value).to_h, xtitle: "Date", ytitle: "Concentration en #{@pollutant.measurement_unit}" %>
+<br><br><br>
