@@ -23,16 +23,35 @@
          <div class="card">
           <div class="card-header">
              <a class="card-link" data-toggle="collapse" data-parent="#card-8801" href="#card-element-<%= a.to_s %>">
-              <%= @test[l]["title"] %> <span class="badge badge-primary">
-                <%= @test[l]["resources"].length %> </span></a>
+              <%= @test[l]["title"] %>
+								<span class="badge badge-primary">
+                	<%= @test[l]["resources"].length %>
+								</span>
+								</a>
           </div>
           <div id="card-element-<%= a %>" class="collapse">
             <div class="card-body">
-
+							<%= @test[l]["notes"] %>
+							<br><br>
               <% b = 0 %>
               <% while b < @test[l]["resources"].length %>
-             
-              <%= @test[l]["resources"][b]["name"] %>
+							<% if @test[l]["resources"][b]["resource_type"] == "file.upload" %> 
+              <%= link_to @test[l]["resources"][b]["name"], @test[l]["resources"][b]["url"].gsub("/download/ows", ""), class: "link" %>
+							<% elsif  @test[l]["resources"][b]["resource_type"] == "file" && @test[l]["resources"][b]["url"].include?("_poll_princ") %>
+							<%= @test[l]["resources"][b]["name"] %>
+							<%= link_to (@test[l]["resources"][b]["url"]+"&request=GetFeature&typeName=#{@test[l]["resources"][b]["url"].split("/")[4]}:#{@test[l]["resources"][b]["url"].split("/")[4].gsub("_poll_princ","")}&outputFormat=application/json").gsub("_o3","").gsub("_nox","").gsub("c6h6","").gsub("_co","").gsub("_pm25","").gsub("_pm10","").gsub("_no2","").gsub("_so2","") do %>
+							<span class="badge badge-primary">
+                  JSON
+              </span>
+							<% end %>
+							<%= link_to (@test[l]["resources"][b]["url"]+"&request=GetFeature&typeName=#{@test[l]["resources"][b]["url"].split("/")[4]}:#{@test[l]["resources"][b]["url"].split("/")[4].gsub("_poll_princ","")}&outputFormat=csv").gsub("_o3","").gsub("_nox","").gsub("c6h6","").gsub("_co","").gsub("_pm25","").gsub("_pm10","").gsub("_no2","").gsub("_so2","") do %>
+							<span class="badge badge-primary">
+                  CSV
+              </span>
+							<% end %>
+							<% else %>
+							<%= @test[l]["resources"][b]["name"] %>
+							<% end %>
                <br>
               <% b = b + 1 %>
               <%end%>
