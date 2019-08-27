@@ -18,4 +18,13 @@ class Station < ApplicationRecord
     self.all.each { |µ| output << µ.station_name }
 		output.uniq
   end
+
+	def get_station_prefix
+		if ((self.station_name.downcase =~(/[aeiou]/)) == 0)
+		 return "d'"
+		else
+			return "de "
+		end
+		puts self.station_name
+	end
 end

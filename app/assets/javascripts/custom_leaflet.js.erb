@@ -1,4 +1,4 @@
-var stations_map = L.map('mapidan').setView([43.307827, 5.404262], 9);
+var stations_map = L.map('mapid').setView([43.307827, 5.404262], 9);
 
 var stations = [];
 <% Station.all.each do |st| %>
@@ -14,9 +14,6 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
     accessToken: 'pk.eyJ1IjoidG1pcXVlbCIsImEiOiJjanU5d3AzenEyY2QxNDRucnF2c3pydW8wIn0.PQGiuirI2MraPTanoBJzRQ'
 }).addTo(stations_map);
 
-
-var popup = L.popup();
-
 function onMapClick(e) {
     popup
         .setLatLng(e.latlng)
@@ -26,7 +23,14 @@ function onMapClick(e) {
 
 stations_map.on('click', onMapClick);
 
-stations.forEach(function setMarkers(stt) {
-  new L.Marker([stt[0], stt[1]]).addTo(stations_map);
-});
 
+<% Station.all.each do |st| %>
+	var link_list = [];
+	link_list.push("<h4>Station <%= "#{st.get_station_prefix}#{st.station_name}" %></h4><% st.pollutants.uniq.each do |poll| %>	<a href='/stations/<%= st.id %>/measurements/<%= poll.id %>'><%= poll.pollutant_name %></a><br /><% end %>");
+	var marker = new L.Marker([<%= st.latitude %>, <%= st.longitude %>]);
+	marker.addTo(stations_map);
+	for (var i = 0; i< link_list.length; i++) {
+		var popup = L.popup().setContent(link_list[i]);
+		marker.bindPopup(popup);
+	};
+<% end %>

@@ -3,12 +3,45 @@
 <div>
 <h2>Nombre de mesures par polluants :</h2>
 <%= pie_chart @hourly_measurements.joins(:pollutant).group("pollutants.pollutant_name").count, donut: true %>
-<h2>Mesures quotidiennes :</h2>
-<h2>Mesures mensuelles :</h2>
-<%= line_chart @monthly_measurements.where(station: @random_station, pollutant: @monthly_measurements.where(station: @random_station).sample.pollutant).pluck(:measurement_end_date, :value).to_h %>
-<h2>Mesures annuelles :</h2>
-<%= line_chart @annual_measurements %>
+<h2>Nombre de mesures par périodicité de la mesure :</h2>
+<%= pie_chart Measurement.all.group(:measurement_periodicity).count %>
+<% @hourly_measurements_stations.each do |station| %>
+<% station.pollutants.each do |pollutant| %>
+<h2>Mesures horaires pour le polluant: <%= pollutant.pollutant_name %> et la station <%= station.station_name %> de la ville de <%= station.township.township_name %> :</h2>
+<%= line_chart @hourly_measurements.where(station: station, pollutant: pollutant).pluck(:measurement_end_date, :value).to_h, xtitle: "Date", ytitle: "Concentration en #{pollutant.measurement_unit}" %>
+<% end %>
+<% end %>
+<% @hourly_measurements_stations.each do |station| %>
+<% station.pollutants.each do |pollutant| %>
+<h2>Mesures quotidiennes pour le polluant: <%= pollutant.pollutant_name %> et la station <%= station.station_name %> de la ville de <%= station.township.township_name %> :</h2>
+<%= line_chart @daily_measurements.where(station: station, pollutant: pollutant).pluck(:measurement_end_date, :value).to_h, xtitle: "Date", ytitle: "Concentration en #{pollutant.measurement_unit}" %>
+<% end %>
+<% end %>
+<% @hourly_measurements_stations.each do |station| %>
+<% station.pollutants.each do |pollutant| %>
+<h2>Mesures mensuelles pour le polluant: <%= pollutant.pollutant_name %> et la station <%= station.station_name %> de la ville de <%= station.township.township_name %> :</h2>
+<%= line_chart @monthly_measurements.where(station: station, pollutant: pollutant).pluck(:measurement_end_date, :value).to_h, xtitle: "Date", ytitle: "Concentration en #{pollutant.measurement_unit}" %>
+<% end %>
+<% end %>
+<% @hourly_measurements_stations.each do |station| %>
+<% station.pollutants.each do |pollutant| %>
+<h2>Mesures annuelles pour le polluant: <%= pollutant.pollutant_name %> et la station <%= station.station_name %> de la ville de <%= station.township.township_name %> :</h2>
+<%= line_chart @annual_measurements.where(station: station, pollutant: pollutant).pluck(:measurement_end_date, :value).to_h, xtitle: "Date", ytitle: "Concentration en #{pollutant.measurement_unit}" %>
+<% end %>
+<% end %>
 </div>
 <div id="byebug-div">
-<%= @monthly_measurements %>
+<%= "horaires :"+@hourly_measurements.size.to_s %><br>
+<%= "quotidiens :"+@daily_measurements.size.to_s %><br>
+<%= "mensuels :"+@monthly_measurements.size.to_s %><br>
+<%= "annuels :"+@annual_measurements.size.to_s %><br>
 </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
