@@ -2,7 +2,6 @@
 
 Rails.application.routes.draw do
   get 'maps/index'
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :topics
 	resources :maps, only: %i[index]
 	resources :departments, only: %i[index show]

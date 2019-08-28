@@ -1,15 +1,17 @@
 class AtmoParse
+		require 'uri'
     require 'open-uri'
     require 'csv'
     require 'fastercsv'
+		require 'addressable/uri'
 	def return_last_data(periodicity="annuelle")
 		registred_dpts = Department.get_registred_dpts.to_a
 		registred_townships = Township.get_registred_townships.to_a
 		registred_pollutants = Pollutant.get_registred_pollutants.to_a
 		registred_stations = Station.get_registred_stations.to_a
 		registred_measurements = Measurement.get_registred_measurements.to_a
-		url  =  "https://geoservices.atmosud.org/geoserver/mes_sudpaca_#{periodicity}_poll_princ/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=mes_sudpaca_#{periodicity}_poll_princ:mes_sudpaca_#{periodicity}&outputFormat=csv&srsName=EPSG:2154"
-		src = open(url)
+		url  =  "http://geoservices.atmosud.org/geoserver/mes_sudpaca_#{periodicity}_poll_princ/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=mes_sudpaca_#{periodicity}_poll_princ:mes_sudpaca_#{periodicity}&outputFormat=csv&srsName=EPSG:2154"
+		src = open(Addressable::URI.encode(url, return_type = String))
 		previous_row = { :nom_station => "", :nom_poll => "" }
 		instance_variable_set("@last_data_#{periodicity}", [])
 		CSV.foreach(src, {:headers => true, :header_converters => :symbol}) do |current_row|
@@ -26,8 +28,7 @@ class AtmoParse
           registred_townships << town.township_name
       end
       if (!registred_stations.include?(current_row[:nom_station]))
-					correct_coordinates = GustaveConverter.new.convert_coordinates(current_row[:x_l93], current_row[:y_l93])
-          (station = Station.new(township: Township.where(township_name: current_row[:nom_com]).first, station_name: current_row[:nom_station], station_code: current_row[:code_station], typology: current_row[:typologie], influence: current_row[:influence], latitude: correct_coordinates[0].to_s, longitude: correct_coordinates[1].to_s))
+          station = Station.new(township: Township.where(township_name: current_row[:nom_com]).first, station_name: current_row[:nom_station], station_code: current_row[:code_station], typology: current_row[:typologie], influence: current_row[:influence], latitude: current_row[:x_l93], longitude: current_row[:y_l93])
 					station.save
           puts "successfully created Station " + current_row[:nom_station]
           registred_stations << station.station_name

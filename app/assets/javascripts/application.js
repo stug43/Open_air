@@ -10,8 +10,8 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require rails-ujs
 //= require jquery
+//= require rails-ujs
 //= require activestorage
 
 
@@ -58,6 +58,4 @@
 
 //= require boomerang.min
 //= require leaflet
-//= require chartkick
-//= require Chart.bundle
 //= require_tree .
