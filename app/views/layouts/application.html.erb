@@ -29,29 +29,29 @@
               <%= render "layouts/navbar" %>
               <!-- Header -->
               <%= render "topics/topic-index-banner" %>
-              <section class="bg-base-5 slice sct-color-1 col-12">
 								<% if controller.class.parents.include?(Admin) %>
+              <section class="bg-base-5 slice sct-color-1 col-12">
                 <div class="bg-base-5 container col-10">
                   <%= render 'layouts/flash' %>
 									<div class="d-flex flex-row col-12">
 									<%= render "layouts/admin/side_menu" %>
                   <%= yield %>
 									</div>
-                </div>
 								<% else %>
+              <section class="bg-base-5 slice sct-color-1">
                 <div class="bg-base-5 container">
                   <%= render 'layouts/flash' %>
 									<%= render 'layouts/sign_in' %>
                   <%= yield %>
-                </div>
 								<% end %>
+                </div>
               </section>
             </div>
           </div>
         </div><!-- END: st-pusher -->
       </div><!-- END: st-container -->
     </div><!-- END: body-wrap -->
-    <a href="#" class="back-to-top btn-back-to-top"></a>
+    <a href="#" class="back-to-top btn-back-to-top" style="z-index:2;"></a>
 		<br><br><br>
     <%= render "layouts/footer" %>
     <%= javascript_include_tag 'application' %>

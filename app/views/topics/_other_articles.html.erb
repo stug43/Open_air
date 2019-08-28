@@ -1,9 +1,9 @@
 <% if (@related_topics_size > 0) %>
-<hr>
-<div class="col-6">
+	<hr class="col-10">
+<div class="col-2 mx-auto">
 	<h3 class="heading heading-6 strong-600 text-uppercase mb-4">Autres articles</h3>
 </div>
-<div class="card-deck">
+<div class="card-deck col-10 mx-auto">
 	<% related_topics.each do |topic| %>
 	<div class="col-lg-4 mb-5">
 		<div class="card z-depth-2-top h-auto">
