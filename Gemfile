@@ -77,7 +77,6 @@ gem 'dotenv-rails'
 gem 'factory_bot_rails'
 gem 'faker'
 gem 'font-awesome-rails'
-gem 'guard-rspec', require: false
 gem 'high_voltage', '~> 3.1'
 gem 'ionicons-rails'
 gem 'jquery-rails'
@@ -85,13 +84,12 @@ gem 'letter_opener', group: :development
 gem 'linea'
 gem 'mini_racer'
 gem 'simple-line-icons-rails'
-gem 'table_print'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # https://stackoverflow.com/questions/23727468/error-with-active-record-translations
-gem 'nokogiri'
+gem 'nokogiri', '~> 1.10.4'
 gem 'rails-i18n', '~> 5.1'
 gem 'leaflet-rails'
+gem 'ckeditor_rails'
 gem 'twitter'
-gem 'bootstrap-wysihtml5-rails', '> 0.3.1.24'
 gem 'chart-js-rails'

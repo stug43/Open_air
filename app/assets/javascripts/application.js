@@ -16,7 +16,6 @@
 
 
 
-//= require jquery/jquery.min
 //= require popper/popper.min
 //= require bootstrap/js/bootstrap.min
 //= require slidebar/slidebar
@@ -58,5 +57,6 @@
 
 //= require boomerang.min
 //= require leaflet
+//= require ckeditor-jquery
 //= require Chart.min
 //= require_tree .

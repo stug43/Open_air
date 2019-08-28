@@ -29,14 +29,22 @@
               <%= render "layouts/navbar" %>
               <!-- Header -->
               <%= render "topics/topic-index-banner" %>
-              <section class="bg-base-5 slice sct-color-1">
+              <section class="bg-base-5 slice sct-color-1 col-12">
 								<% if controller.class.parents.include?(Admin) %>
+                <div class="bg-base-5 container col-10">
+                  <%= render 'layouts/flash' %>
+									<div class="d-flex flex-row col-12">
 									<%= render "layouts/admin/side_menu" %>
-								<% end %>
+                  <%= yield %>
+									</div>
+                </div>
+								<% else %>
                 <div class="bg-base-5 container">
                   <%= render 'layouts/flash' %>
+									<%= render 'layouts/sign_in' %>
                   <%= yield %>
                 </div>
+								<% end %>
               </section>
             </div>
           </div>
@@ -44,7 +52,13 @@
       </div><!-- END: st-container -->
     </div><!-- END: body-wrap -->
     <a href="#" class="back-to-top btn-back-to-top"></a>
+		<br><br><br>
     <%= render "layouts/footer" %>
     <%= javascript_include_tag 'application' %>
+	<script type="text/javascript">
+		$(document).on('click', '#loginformdisplayer', function my_function() {
+			if ( document.getElementById('my_main').classList.value.includes("d-none")){ document.getElementById('my_modal').classList.add("d-none");let element = document.getElementById('my_main'); element.classList.remove("d-none");} else{ document.getElementById('my_main').classList.add("d-none"); let element = document.getElementById('my_modal'); element.classList.remove("d-none");  }
+		});
+	</script>
   </body>        
 </html>

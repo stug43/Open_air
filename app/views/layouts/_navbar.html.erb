@@ -54,7 +54,7 @@
             <% unless user_signed_in? %>
             	<% unless (controller_name == "devise") %>
             <!-- Sign in button shall not appear when user is  in  the sign in page -->
-            		<%= link_to "Se Connecter", new_user_session_path(anchor: "top"), class: "btn btn-styled btn-base-1 btn-round text-white" %>
+            		<button id="loginformdisplayer" class="btn btn-styled btn-base-1 btn-round text-white">Se Connecter</button>
             	<% end %>
             <% else %>
             	<%= button_to "Se Déconnecter", destroy_user_session_path, :method => :delete, class: "btn btn-styled btn-base-1 btn-round text-white" %>

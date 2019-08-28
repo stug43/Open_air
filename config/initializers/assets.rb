@@ -18,6 +18,7 @@ Rails.application.config.assets.paths << Rails.root.join('app', 'assets', 'fonts
 Rails.application.config.assets.precompile += %w( line-icons-pro/line-icons-pro.css )
 
 Rails.application.config.assets.precompile += %w( custom_leaflet.js )
+Rails.application.config.assets.precompile += %w[ckeditor/config.js]
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets

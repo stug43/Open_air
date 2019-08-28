@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 	namespace :admin do
 		root to: 'topics#index'
   	resources :users, only: [:index, :edit, :update, :destroy]
-		resources :topics, only: [:index, :create, :edit, :update, :destroy]
+		resources :topics, only: [:new, :index, :create, :edit, :update, :destroy]
 		resources :datasets, only: [:index, :create, :edit, :update, :destroy]
 	end
 	resources :users do

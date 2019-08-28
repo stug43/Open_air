@@ -3,37 +3,37 @@
 <%= k.text_field :title, class:"form-control" %>
 <br />
 <%= k.label :short_description %>
-<%= k.text_area :short_description, class:"form-control" %>
+<%= k.text_area :short_description, class:"form-control ckeditor" %>
 <br />
 <%= k.label :driver_section_title %>
 <%= k.text_field :driver_section_title, class:"form-control" %>
 <br />
 <%= k.label :driver_section_intro %>
-<%= k.text_area :driver_section_intro, class:"form-control" %>
+<%= k.text_area :driver_section_intro, class:"form-control ckeditor" %>
 <br />
 <%= k.label :pressure_section_title %>
 <%= k.text_field  :pressure_section_title, class:"form-control" %>
 <br />
 <%= k.label :pressure_section_intro %>
-<%= k.text_area :pressure_section_intro, class:"form-control" %>
+<%= k.text_area :pressure_section_intro, class:"form-control ckeditor" %>
 <br />
 <%= k.label :state_section_title %>
 <%= k.text_field  :state_section_title, class:"form-control" %>
 <br />
 <%= k.label :state_section_intro %>
-<%= k.text_area :state_section_intro, class:"form-control" %>
+<%= k.text_area :state_section_intro, class:"form-control ckeditor" %>
 <br />
 <%= k.label :impact_section_title %>
 <%= k.text_field  :impact_section_title, class:"form-control" %>
 <br />
 <%= k.label :impact_section_intro %>
-<%= k.text_area :impact_section_intro, class:"form-control" %>
+<%= k.text_area :impact_section_intro, class:"form-control ckeditor" %>
 <br />
 <%= k.label :response_section_title %>
 <%= k.text_field  :response_section_title, class:"form-control" %>
 <br />
 <%= k.label :response_section_intro %>
-<%= k.text_area :response_section_intro, class:"form-control" %>
+<%= k.text_area :response_section_intro, class:"form-control ckeditor" %>
 <br />
 <%= k.label :main_picture %>
 <%= k.file_field :main_picture, class:"btn" %>
@@ -41,3 +41,4 @@
 <%= k.submit "create", class:"btn btn-styled" %>
 <br />
 <% end %>
+<br><br>
