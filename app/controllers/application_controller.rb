@@ -19,4 +19,8 @@ protected
 		redirect_to new_user_session_path unless (current_user && current_user.admin?)
 	end
 
+	def after_sign_in_path_for(resource)
+  	stored_location_for(resource) || topics_path
+	end
+
 end

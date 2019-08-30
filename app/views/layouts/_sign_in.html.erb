@@ -1,4 +1,4 @@
-<%= form_for(resource,  url: session_path(resource_name), remote: true) do |f| %>
+<%= form_for(resource,  url: session_path(resource_name), html: {:id => "my_form"}) do |f| %>
 <section id="my_modal" class="slice-lg has-bg-cover bg-size-cover d-none">
   <div id="top" class="container">
     <div class="row justify-content-center cols-xs-space">
@@ -43,7 +43,7 @@
                   <%= render "devise/shared/links" %>
                 </div>
                 <div class="col-md-6 mt-4 text-right">
-                  <%= f.submit "Se connecter", class:"btn btn-styled btn-base-1 px-4" %>
+                  <%= f.submit "Se connecter", class:"btn btn-styled btn-base-1 px-4", id: "modal_closer" %>
                 </div>
               </div>
               <% if devise_mapping.rememberable? %>

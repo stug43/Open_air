@@ -57,7 +57,11 @@
     <%= javascript_include_tag 'application' %>
 	<script type="text/javascript">
 		$(document).on('click', '#loginformdisplayer', function my_function() {
-			if ( document.getElementById('my_main').classList.value.includes("d-none")){ document.getElementById('my_modal').classList.add("d-none");let element = document.getElementById('my_main'); element.classList.remove("d-none");} else{ document.getElementById('my_main').classList.add("d-none"); let element = document.getElementById('my_modal'); element.classList.remove("d-none");  }
+			if ( document.getElementById('my_main').classList.value.includes("d-none")){ document.getElementById('my_modal').classList.add("d-none");let element = document.getElementById('my_main'); document.getElementById('loginformdisplayer').innerHTML = 'Se connecter' ; element.classList.remove("d-none");} else{ document.getElementById('my_main').classList.add("d-none"); let element = document.getElementById('my_modal'); document.getElementById('loginformdisplayer').innerHTML = 'Retourner sur le site' ; element.classList.remove("d-none");  }
+		});
+
+		$(document).on('click', '#modal_closer', function my_function2() {
+      if ( document.getElementById('my_modal').classList.value.includes("d-none")){ document.getElementById('my_main').classList.add("d-none");let element = document.getElementById('my_modal'); element.classList.remove("d-none");} else{ document.getElementById('my_modal').classList.add("d-none"); let element = document.getElementById('my_main'); element.classList.remove("d-none");  }
 		});
 	</script>
   </body>        
